@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import "./style.css"
 
 export const Navbar = () =>{
     const [cookies, setCookies] = useCookies(["access_token"]);
@@ -14,10 +15,20 @@ export const Navbar = () =>{
     }
     return (
         <div className="navbar">
-            <Link to="/"> Home </Link>
-            {!cookies.access_token ? (<Link to="/auth"> Sign In / Sign Up </Link>) : (<button onClick={logout}>Logout</button>)}
-            <Link to="/create">Create Recipe</Link>
-            <Link to="/save">View Recipes</Link>
+            <ul>
+                <li>
+                    <Link to="/"> Home </Link>
+                </li>
+                <li>
+                    <Link to="/create">Create Recipe</Link>
+                </li>
+                <li>
+                    <Link to="/save">View Recipes</Link>
+                </li>
+                <li>
+                    {!cookies.access_token ? (<Link to="/auth"> Sign In / Sign Up </Link>) : (<button onClick={logout}>Logout</button>)}
+                </li>
+            </ul>
         </div>
     );
 };
